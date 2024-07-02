@@ -1,6 +1,6 @@
 import exceptions from "./exceptions";
 
-export class Grammaire {
+class Grammaire {
     static pluraliser(mot: string, quantite: number): string {
         if (typeof mot !== 'string') throw new TypeError('Le mot doit être une chaîne de caractères');
         if (typeof quantite !== 'number') throw new TypeError('La quantité doit être un nombre (int)');
@@ -9,7 +9,15 @@ export class Grammaire {
         const last2Chars = mot.slice(-2);
 
         if (last2Chars === 'au' || last2Chars === 'eu') {
+            if (this.isException(mot)) return this.getException(mot);
+
             return quantite > 1 ? mot + 'x' : mot;
+        }
+
+        if (last2Chars === 'ou') {
+            if (this.isException(mot)) return this.getException(mot);
+
+            return quantite > 1 ? mot + 's' : mot;
         }
 
         if (last2Chars === 'al') {
@@ -24,7 +32,7 @@ export class Grammaire {
     static isException(mot: string): boolean {
         if (typeof mot !== 'string') throw new TypeError('Le mot doit être une chaîne de caractères');
 
-        return exceptions.pluriel.includes(mot) || exceptions.pluriel.includes(mot);
+        return Object.keys(exceptions.pluriel).includes(mot) || Object.keys(exceptions.pluriel).includes(mot);
     }
 
     static getException(mot: string): string {
@@ -33,3 +41,5 @@ export class Grammaire {
         return exceptions.pluriel[mot];
     }
 }
+
+module.exports = Grammaire;
