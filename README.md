@@ -1,9 +1,13 @@
 # Grammaire
 
-Notre chère langue française est complexe et bourrée de cas particuliers, il est ainsi parfois difficile de gérer les différentes formes
-que peuvent prendre les mots en fonction de leur genre ou nombre.
+La langue française est complexe et plutôt pénible vis-à-vis des cas particuliers. Elle rend parfois difficile les
+manipulations de chaînes de caractères, surtout quand les données sont dynamiques.
 
-Ce package a pour but de simplifier les manipulations de chaînes de caractères en proposant diverses fonctions.
+Ce package a pour but de simplifier ces manipulations en fournissant des méthodes pour gérer les pluriels en français,
+afin d'arrêter d'avoir à écrire `{{ count }} {{ count > 1 ? 'cheval' : 'chevaux' }}` à chaque fois.
+
+D'autres fonctionnalités seront ajoutées par la suite, dans le but de simplifier l'usage du masculin/féminin (notamment
+l'usage de l'écriture inclusive), la gestion des "au", "à le", "aux", "du", "des", etc.
 
 ## Installation
 
