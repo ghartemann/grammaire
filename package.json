@@ -22,11 +22,10 @@
         "url": "https://github.com/ghartemann/grammaire/issues"
     },
     "homepage": "https://github.com/ghartemann/grammaire#readme",
+    "module": "grammaire.ts",
     "devDependencies": {
         "jest": "^29.7.0",
-        "typescript": "^5.5.3"
-    },
-    "dependencies": {
+        "typescript": "^5.5.3",
         "@babel/preset-env": "^7.24.7",
         "babel-jest": "^29.7.0",
         "ts-jest": "^29.1.5"
