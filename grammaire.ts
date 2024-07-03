@@ -1,6 +1,6 @@
 import exceptions from "./exceptions";
 
-class Grammaire {
+export class Grammaire {
     /** Pluralise un mot en fonction de la quantité donnée<br>
      * Exemple :<br>
      * ```typescript
