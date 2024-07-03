@@ -1,6 +1,6 @@
 {
     "name": "grammaire",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Un package pour gérer diverses règles de grammaire en français (pluralisation, genre, etc.)",
     "main": "grammaire.js",
     "scripts": {
