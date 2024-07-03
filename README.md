@@ -26,7 +26,7 @@ console.log(pluralise('pomme', 2)); // pommes
 console.log(pluralise('cheval', 2)); // chevaux
 
 // Pour indiquer un pluriel spécifique et/ou surcharger le pluriel par défaut
-console.log(pluralise(['cheval', 'chevals'], 2)); // chevals
+console.log(pluralise('cheval', 2, 'chevals')); // chevals
 ```
 
 ## Ressources
