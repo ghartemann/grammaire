@@ -89,7 +89,7 @@ export default class Grammaire {
      * Grammaire.isException('chat'); // false
      * Grammaire.isException('serval'); // true
      * ```*/
-    static isException(mot: string): boolean {
+    private static isException(mot: string): boolean {
         return Object.keys(ExceptionsPluriel).includes(mot);
     }
 
@@ -98,7 +98,7 @@ export default class Grammaire {
      * Grammaire.getException('serval'); // servals
      * Grammaire.getException('chat'); // Error: Le mot n'est pas une exception
      * ```*/
-    static getException(mot: string): string {
+    private static getException(mot: string): string {
         if (!this.isException(mot)) {
             throw new Error('Le mot n\'est pas une exception');
         }
