@@ -12,7 +12,7 @@ Explication pratique : remplacez
 ```
 par
 ```javascript
-{{ user.contrats.length }} {{ Grammaire.pluralise('contrat', user.contrats.length) }}
+{{ user.contrats.length }} {{ Gr.pluralise('contrat', user.contrats.length) }}
 <!--7 contrats-->
 ```
 

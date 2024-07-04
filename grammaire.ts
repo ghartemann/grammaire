@@ -1,7 +1,7 @@
 import ExceptionsPluriel from "./ExceptionsPluriel";
 import Assess from "./assess";
 
-export default class Grammaire {
+export class Gr {
 
     /** Pluralise un mot en fonction de la quantité donnée<br>
      * ```typescript
@@ -68,15 +68,15 @@ export default class Grammaire {
 
     /** Pluralise plusieurs mots successifs en fonction de la quantité donnée<br>
      * ```typescript
-     * Grammaire.multiPluralise(['chat', 'orange'], 1); // chat orange
-     * Grammaire.multiPluralise(['cheval', 'noir'], 2); // chevaux noirs
-     * Grammaire.multiPluralise(['serval', 'rouge'], 2); // servals rouges
+     * Grammaire.mPluralise(['chat', 'orange'], 1); // chat orange
+     * Grammaire.mPluralise(['cheval', 'noir'], 2); // chevaux noirs
+     * Grammaire.mPluralise(['serval', 'rouge'], 2); // servals rouges
      * ```
      * Attention : ne fournir que les mots à pluraliser<br>
      * ```typescript
-     * Grammaire.multiPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
+     * Grammaire.mPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
      * ```*/
-    static multiPluralise(mots: string[], quantite: number): string {
+    static mPluralise(mots: string[], quantite: number): string {
         mots.forEach((mot, index) => {
             mots[index] = this.pluralise(mot, quantite);
         });
