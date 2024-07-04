@@ -45,7 +45,12 @@ import Gr from 'grammaire';
 Permet de transformer un mot au pluriel en fonction d'un nombre donné.
 
 ```typescript
-function pluralise(mot: string, quantite: number, pluriel: string = null, seuil: number = 2): string {}
+function pluralise(
+    mot: string,
+    quantite: number,
+    pluriel: string = null,
+    seuil: number = 2
+): string {}
 ```
 
 Exemples :
@@ -68,7 +73,11 @@ Gr.pluralise('kilomètre', 1.5, null, 1); // kilomètres
 Pluralise plusieurs mots successifs en fonction de la quantité donnée.
 
 ```typescript
-function mPluralise(mots: Array, quantite: number, seuil: number = 2): string {}
+function mPluralise(
+    mots: Array,
+    quantite: number,
+    seuil: number = 2
+): string {}
 ```
 
 Exemples :
