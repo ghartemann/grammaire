@@ -33,6 +33,12 @@ npm install grammaire
 
 ## Utilisation
 
+### Import
+```javascript
+import Gr from 'grammaire';
+```
+
+
 ### pluralise()
 Permet de transformer un mot au pluriel en fonction d'un nombre donné.
 
@@ -42,32 +48,32 @@ function pluralise(mot: string, quantite: number, pluriel: string = null): strin
 
 Exemples :
 ```javascript
-Grammaire.pluralise('pomme', 2); // pommes
-Grammaire.pluralise('cheval', 2); // chevaux
+Gr.pluralise('pomme', 2); // pommes
+Gr.pluralise('cheval', 2); // chevaux
 ```
 
 Il est possible de surcharger la méthode en passant un pluriel en paramètre.
 ```javascript
-Grammaire.pluralise('cheval', 2, 'chevals'); // chevals
+Gr.pluralise('cheval', 2, 'chevals'); // chevals
 ```
 
-### multiPluralise()
+### mPluralise()
 Pluralise plusieurs mots successifs en fonction de la quantité donnée.
 
 ```typescript
-function multiPluralise(mots: Array, quantite: number): string {}
+function mPluralise(mots: Array, quantite: number): string {}
 ```
 
 Exemples :
 
 ```javascript
-Grammaire.multiPluralise(['chat', 'orange'], 1); // chat orange
-Grammaire.multiPluralise(['cheval', 'noir'], 2); // chevaux noirs
-Grammaire.multiPluralise(['serval', 'rouge'], 2); // servals rouges
+Gr.mPluralise(['chat', 'orange'], 1); // chat orange
+Gr.mPluralise(['cheval', 'noir'], 2); // chevaux noirs
+Gr.mPluralise(['serval', 'rouge'], 2); // servals rouges
 ```
 Attention : ne fournir que les mots à pluraliser
 ```javascript
-Grammaire.multiPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
+Gr.mPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
 ```
 
 
@@ -76,7 +82,6 @@ Grammaire.multiPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => fau
 yarn test
 ```
 
-Cependant les tests sont pétés actuellement.
 
 ## Contribuer
 Pour contribuer, il suffit de cloner le projet et de créer une pull request.
