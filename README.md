@@ -7,14 +7,16 @@ Ce package a pour but de simplifier ces manipulations en fournissant des méthod
 
 Explication pratique : remplacez
 ```vue
-{{ user.contrats.length }} contrat{{ user.contrats.length > 1 ? 's' : '' }}
+{{ contrats.length }} contrat{{ contrats.length > 1 ? 's' : '' }}
 <!--7 contrats-->
 ```
 par
-```javascript
-{{ user.contrats.length }} {{ Gr.pluralise('contrat', user.contrats.length) }}
+```vue
+{{ contrats.length }} {{ Gr.pluralise('contrat', contrats.length) }}
 <!--7 contrats-->
 ```
+
+Le résultat est un poil plus long mais il est plus lisible et gère tout seul les exceptions.
 
 D'autres fonctionnalités seront ajoutées par la suite, dans le but de simplifier l'usage du masculin/féminin (notamment
 l'usage de l'écriture inclusive), la gestion des "au", "à le", "aux", "du", "des", etc.
@@ -43,7 +45,7 @@ import Gr from 'grammaire';
 Permet de transformer un mot au pluriel en fonction d'un nombre donné.
 
 ```typescript
-function pluralise(mot: string, quantite: number, pluriel: string = null): string {}
+function pluralise(mot: string, quantite: number, pluriel: string = null, seuil: number = 2): string {}
 ```
 
 Exemples :
@@ -52,16 +54,21 @@ Gr.pluralise('pomme', 2); // pommes
 Gr.pluralise('cheval', 2); // chevaux
 ```
 
-Il est possible de surcharger la méthode en passant un pluriel en paramètre.
+Il est possible de surcharger la méthode en passant un pluriel en paramètre :
 ```javascript
 Gr.pluralise('cheval', 2, 'chevals'); // chevals
+```
+
+Ou en réduisant le seuil à partir duquel le mot est mis au pluriel :
+```javascript
+Gr.pluralise('kilomètre', 1.5, null, 1); // kilomètres
 ```
 
 ### mPluralise()
 Pluralise plusieurs mots successifs en fonction de la quantité donnée.
 
 ```typescript
-function mPluralise(mots: Array, quantite: number): string {}
+function mPluralise(mots: Array, quantite: number, seuil: number = 2): string {}
 ```
 
 Exemples :
@@ -90,4 +97,5 @@ Pour contribuer, il suffit de cloner le projet et de créer une pull request.
 [ISC](https://opensource.org/licenses/ISC)
 
 ## Ressources
-[Pluriels irréguliers en français](https://fr.wiktionary.org/wiki/Annexe:Pluriels_irr%C3%A9guliers_en_fran%C3%A7ais)
+- [Pluriels irréguliers en français](https://fr.wiktionary.org/wiki/Annexe:Pluriels_irr%C3%A9guliers_en_fran%C3%A7ais)
+- [1,5 gramme ou 1,5 grammes](https://www.antidote.info/fr/blogue/enquetes/15-gramme-ou-15-grammes)
