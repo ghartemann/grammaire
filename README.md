@@ -93,6 +93,26 @@ Attention : ne fournir que les mots à pluraliser
 Gr.mPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
 ```
 
+### articleVille()
+Renvoie l'article défini contracté pour un nom de ville et une préposition (à ou de).
+
+```typescript
+function articleVille(
+    nomVille: string,
+    preposition: string
+): string {}
+```
+
+Exemples :
+
+```javascript
+Gr.articleVille('Paris', 'à'); // à Paris
+Gr.articleVille('Le Havre', 'de'); // du Havre
+Gr.articleVille('La Rochelle', 'à'); // à La Rochelle
+Gr.articleVille('Les Sables-d\'Olonne', 'de'); // des Sables-d'Olonne
+Gr.articleVille('Le Lavandou', 'à'); // au Lavandou
+```
+
 
 ## Tests
 ```bash

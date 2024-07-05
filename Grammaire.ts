@@ -97,4 +97,51 @@ export class Gr {
 
         return ExceptionsPluriel[mot];
     }
+
+    /** Renvoie l'article (défini ou indéfini) correspondant à un nom de ville<br>
+     * ```typescript
+     * Gr.articleVille('Le Havre', 'de'); // du Havre
+     * Gr.articleVille('Les Sables-d\'Olonne', 'de'); // des Sables-d'Olonne
+     * Gr.articleVille('La Rochelle', 'de'); // de la Rochelle
+     * Gr.articleVille('Lille', 'à'); // à Lille
+     * ```*/
+    static articleVille(nomVille: string, preposition: string): string {
+        if (preposition === 'à') {
+            if (nomVille.startsWith('Les ')) {
+                return 'aux ' + nomVille.slice(4);
+            }
+
+            if (nomVille.startsWith('Le ')) {
+                return 'au ' + nomVille.slice(3);
+            }
+
+            if (nomVille.startsWith('La ')) {
+                return 'à la ' + nomVille.slice(3);
+            }
+
+            if (nomVille.startsWith('L\'')) {
+                return 'à l\'' + nomVille.slice(2);
+            }
+
+            return 'à ' + nomVille;
+        } else if (preposition === 'de') {
+            if (nomVille.startsWith('Les ')) {
+                return 'des ' + nomVille.slice(4);
+            }
+
+            if (nomVille.startsWith('Le ')) {
+                return 'du ' + nomVille.slice(3);
+            }
+
+            if (nomVille.startsWith('La ')) {
+                return 'de la ' + nomVille.slice(3);
+            }
+
+            if (nomVille.startsWith('L\'')) {
+                return 'de l\'' + nomVille.slice(2);
+            }
+
+            return 'de ' + nomVille;
+        }
+    }
 }

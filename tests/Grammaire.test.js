@@ -1,5 +1,6 @@
 import {Gr} from '../Grammaire.ts';
 
+/////////////////////////////////////////////////////// PLURIELS ///////////////////////////////////////////////////////
 //////////// MOTS EN -S, -Z ET -X //////////////
 test('brebis > brebis', () => {
     expect(Gr.pluralise('brebis', 2)).toBe('brebis');
@@ -80,4 +81,35 @@ test('cheval > chevals', () => {
 
 test('[hibou, rouge] > hiboux rouges', () => {
     expect(Gr.mPluralise(['hibou', 'rouge'], 2)).toBe('hiboux rouges');
+});
+
+
+
+/////////////////////////////////////////////////////// ARTICLES ///////////////////////////////////////////////////////
+test('de le Havre > du Havre', () => {
+    expect('Le port ' + Gr.articleVille('Le Havre', 'de')).toBe('Le port du Havre');
+});
+
+test('à le Lavandou > au Lavandou', () => {
+    expect('En vacances ' + Gr.articleVille('Le Lavandou', 'à')).toBe('En vacances au Lavandou');
+});
+
+test('à la Nouvelle-Orléans > à la Nouvelle-Orléans', () => {
+    expect('Bienvenue ' + Gr.articleVille('La Nouvelle-Orléans', 'à')).toBe('Bienvenue à la Nouvelle-Orléans');
+});
+
+test('de les Andelys > des Andelys', () => {
+    expect('Le château ' + Gr.articleVille('Les Andelys', 'de')).toBe('Le château des Andelys');
+});
+
+test('à les Ulis > aux Ulis', () => {
+    expect('Voyage ' + Gr.articleVille('Les Ulis', 'à')).toBe('Voyage aux Ulis');
+});
+
+test('de le Touquet > du Touquet', () => {
+    expect('Les plages ' + Gr.articleVille('Le Touquet', 'de')).toBe('Les plages du Touquet');
+});
+
+test('à le Mans > au Mans', () => {
+    expect('La course ' + Gr.articleVille('Le Mans', 'à')).toBe('La course au Mans');
 });
