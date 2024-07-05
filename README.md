@@ -98,19 +98,19 @@ Renvoie l'article défini contracté pour un nom de ville et une préposition (�
 
 ```typescript
 function articleVille(
-    nomVille: string,
-    preposition: string
+    preposition: string,
+    nomVille: string
 ): string {}
 ```
 
 Exemples :
 
 ```javascript
-Gr.articleVille('Paris', 'à'); // à Paris
-Gr.articleVille('Le Havre', 'de'); // du Havre
-Gr.articleVille('La Rochelle', 'à'); // à La Rochelle
-Gr.articleVille('Les Sables-d\'Olonne', 'de'); // des Sables-d'Olonne
-Gr.articleVille('Le Lavandou', 'à'); // au Lavandou
+Gr.articleVille('à', 'Paris'); // à Paris
+Gr.articleVille('de', 'Le Havre'); // du Havre
+Gr.articleVille('à', 'La Rochelle'); // à La Rochelle
+Gr.articleVille('de', 'Les Sables-d\'Olonne'); // des Sables-d'Olonne
+Gr.articleVille('à', 'Le Lavandou'); // au Lavandou
 ```
 
 

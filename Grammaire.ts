@@ -105,7 +105,7 @@ export class Gr {
      * Gr.articleVille('La Rochelle', 'de'); // de la Rochelle
      * Gr.articleVille('Lille', 'à'); // à Lille
      * ```*/
-    static articleVille(nomVille: string, preposition: string): string {
+    static articleVille(preposition: string, nomVille: string): string {
         if (preposition === 'à') {
             if (nomVille.startsWith('Les ')) {
                 return 'aux ' + nomVille.slice(4);

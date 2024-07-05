@@ -87,29 +87,29 @@ test('[hibou, rouge] > hiboux rouges', () => {
 
 /////////////////////////////////////////////////////// ARTICLES ///////////////////////////////////////////////////////
 test('de le Havre > du Havre', () => {
-    expect('Le port ' + Gr.articleVille('Le Havre', 'de')).toBe('Le port du Havre');
+    expect('Le port ' + Gr.articleVille('de', 'Le Havre')).toBe('Le port du Havre');
 });
 
 test('à le Lavandou > au Lavandou', () => {
-    expect('En vacances ' + Gr.articleVille('Le Lavandou', 'à')).toBe('En vacances au Lavandou');
+    expect('En vacances ' + Gr.articleVille('à', 'Le Lavandou')).toBe('En vacances au Lavandou');
 });
 
 test('à la Nouvelle-Orléans > à la Nouvelle-Orléans', () => {
-    expect('Bienvenue ' + Gr.articleVille('La Nouvelle-Orléans', 'à')).toBe('Bienvenue à la Nouvelle-Orléans');
+    expect('Bienvenue ' + Gr.articleVille('à', 'La Nouvelle-Orléans')).toBe('Bienvenue à la Nouvelle-Orléans');
 });
 
 test('de les Andelys > des Andelys', () => {
-    expect('Le château ' + Gr.articleVille('Les Andelys', 'de')).toBe('Le château des Andelys');
+    expect('Le château ' + Gr.articleVille('de', 'Les Andelys')).toBe('Le château des Andelys');
 });
 
 test('à les Ulis > aux Ulis', () => {
-    expect('Voyage ' + Gr.articleVille('Les Ulis', 'à')).toBe('Voyage aux Ulis');
+    expect('Voyage ' + Gr.articleVille('à', 'Les Ulis')).toBe('Voyage aux Ulis');
 });
 
 test('de le Touquet > du Touquet', () => {
-    expect('Les plages ' + Gr.articleVille('Le Touquet', 'de')).toBe('Les plages du Touquet');
+    expect('Les plages ' + Gr.articleVille('de', 'Le Touquet')).toBe('Les plages du Touquet');
 });
 
 test('à le Mans > au Mans', () => {
-    expect('La course ' + Gr.articleVille('Le Mans', 'à')).toBe('La course au Mans');
+    expect('La course ' + Gr.articleVille('à', 'Le Mans')).toBe('La course au Mans');
 });
