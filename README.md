@@ -1,9 +1,9 @@
 # Grammaire
 
-La langue française est complexe et plutôt pénible vis-à-vis des cas particuliers. Elle rend parfois difficile les
-manipulations de chaînes de caractères, surtout quand les données sont dynamiques.
+La langue française est complexe et plutôt pénible — notamment à cause des très nombreux cas particuliers.
+Les manipulations de chaînes de caractères en sont rendues parfois ardues, surtout quand les mots sont à accorder à des données dynamiques.
 
-Ce package a pour but de simplifier ces manipulations en fournissant des méthodes pour gérer les pluriels en français.
+Ce package a pour but de simplifier ces manipulations en fournissant diverses méthodes applicables à tous types de projets.
 
 Explication pratique : remplacez
 ```vue
@@ -18,8 +18,9 @@ par
 
 Le résultat est un poil plus long mais il est plus lisible et gère tout seul les exceptions.
 
-D'autres fonctionnalités seront ajoutées par la suite, dans le but de simplifier l'usage du masculin/féminin (notamment
+NB: d'autres fonctionnalités seront ajoutées par la suite, dans le but de simplifier l'usage du masculin/féminin (notamment
 l'usage de l'écriture inclusive), la gestion des "au", "à le", "aux", "du", "des", etc.
+
 
 ## Installation
 
@@ -33,13 +34,13 @@ yarn add grammaire
 npm install grammaire
 ```
 
+
 ## Utilisation
 
 ### Import
 ```javascript
 import Gr from 'grammaire';
 ```
-
 
 ### pluralise()
 Permet de transformer un mot au pluriel en fonction d'un nombre donné.
@@ -48,8 +49,8 @@ Permet de transformer un mot au pluriel en fonction d'un nombre donné.
 function pluralise(
     mot: string,
     quantite: number,
-    pluriel: string = null,
-    seuil: number = 2
+    pluriel: string = null, // optionnel
+    seuil: number = 2 // optionnel
 ): string {}
 ```
 
@@ -76,7 +77,7 @@ Pluralise plusieurs mots successifs en fonction de la quantité donnée.
 function mPluralise(
     mots: Array,
     quantite: number,
-    seuil: number = 2
+    seuil: number = 2 // optionnel
 ): string {}
 ```
 
@@ -102,9 +103,11 @@ yarn test
 ## Contribuer
 Pour contribuer, il suffit de cloner le projet et de créer une pull request.
 
+
 ## License
 [ISC](https://opensource.org/licenses/ISC)
 
+
 ## Ressources
 - [Pluriels irréguliers en français](https://fr.wiktionary.org/wiki/Annexe:Pluriels_irr%C3%A9guliers_en_fran%C3%A7ais)
-- [1,5 gramme ou 1,5 grammes](https://www.antidote.info/fr/blogue/enquetes/15-gramme-ou-15-grammes)
+- [1,5 gramme ou 1,5 grammes ?](https://www.antidote.info/fr/blogue/enquetes/15-gramme-ou-15-grammes)

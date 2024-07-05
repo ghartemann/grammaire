@@ -27,14 +27,17 @@ export class Gr {
             return pluriel;
         }
 
+        // Si le mot est une exception
+        if (this.isException(mot)) {
+            return this.getException(mot);
+        }
+
+        // Sinon, on détermine le pluriel
+
         const lastChar = mot.slice(-1);
 
         // mots en -s, -x, -z
         if (lastChar === 's' || lastChar === 'x' || lastChar === 'z') {
-            if (this.isException(mot)) {
-                return this.getException(mot);
-            }
-
             return mot;
         }
 
@@ -42,28 +45,16 @@ export class Gr {
 
         // mots en -eu ou -au
         if (last2Chars === 'au' || last2Chars === 'eu') {
-            if (this.isException(mot)) {
-                return this.getException(mot);
-            }
-
             return mot + 'x';
         }
 
         // mots en -ou
         if (last2Chars === 'ou') {
-            if (this.isException(mot)) {
-                return this.getException(mot);
-            }
-
             return mot + 's';
         }
 
         // mots en -al
         if (last2Chars === 'al') {
-            if (this.isException(mot)) {
-                return this.getException(mot);
-            }
-
             return mot.slice(0, -2) + 'aux';
         }
 
