@@ -155,4 +155,14 @@ export class Gr {
             return 'de ' + nomVille;
         }
     }
+
+    // static articleDep(preposition: string, nomDepartement: string): string {
+    //     Assess.isNotEmptyString(preposition);
+    //     Assess.isNotEmptyString(nomDepartement);
+    //     Assess.isInArray(preposition, ['à', 'de'])
+    //
+    //     if (preposition === 'de') {
+    //         // TODO
+    //     }
+    // }
 }

@@ -1,6 +1,6 @@
 # Grammaire
 
-La langue française est complexe et plutôt pénible — notamment à cause des très nombreux cas particuliers.
+La langue française est complexe et plutôt pénible — notamment pour ses exceptions.
 Les manipulations de chaînes de caractères en sont rendues parfois ardues, surtout quand les mots sont à accorder à des données dynamiques.
 
 Ce package a pour but de simplifier ces manipulations en fournissant diverses méthodes applicables à tous types de projets.
@@ -131,3 +131,4 @@ Pour contribuer, il suffit de cloner le projet et de créer une pull request.
 ## Ressources
 - [Pluriels irréguliers en français](https://fr.wiktionary.org/wiki/Annexe:Pluriels_irr%C3%A9guliers_en_fran%C3%A7ais)
 - [1,5 gramme ou 1,5 grammes ?](https://www.antidote.info/fr/blogue/enquetes/15-gramme-ou-15-grammes)
+- [Noms géographiques et leurs articles](https://www.dictionnaire-academie.fr/article/QDL058)
