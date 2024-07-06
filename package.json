@@ -1,6 +1,6 @@
 {
     "name": "grammaire",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "Un package pour gérer diverses règles de grammaire en français (pluralisation, genre, etc.)",
     "main": "Grammaire.ts",
     "scripts": {
