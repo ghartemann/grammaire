@@ -16,6 +16,7 @@ export class Gr {
         seuil: number = 2
     ): string {
         Assess.isPositiveOrZero(quantite);
+        Assess.isNotEmptyString(mot);
 
         // Si la quantité est ingérieure ou égale au seuil (par défaut 2), on renvoie le mot sans modification
         if (quantite < seuil) {
@@ -78,6 +79,7 @@ export class Gr {
         seuil: number = 2
     ): string {
         mots.forEach((mot, index) => {
+            Assess.isNotEmptyString(mot);
             mots[index] = this.pluralise(mot, quantite, null, seuil);
         });
 
@@ -86,11 +88,15 @@ export class Gr {
 
     /** PRIVATE: Détermine si le mot figure dans la liste des exceptions */
     private static isException(mot: string): boolean {
+        Assess.isNotEmptyString(mot);
+
         return Object.keys(ExceptionsPluriel).includes(mot);
     }
 
     /** PRIVATE: Renvoie le pluriel du mot SI celui-ci est une exception */
     private static getException(mot: string): string {
+        Assess.isNotEmptyString(mot);
+
         if (!this.isException(mot)) {
             throw new Error('Le mot n\'est pas une exception');
         }
@@ -106,6 +112,10 @@ export class Gr {
      * Gr.articleVille('Lille', 'à'); // à Lille
      * ```*/
     static articleVille(preposition: string, nomVille: string): string {
+        Assess.isNotEmptyString(preposition);
+        Assess.isNotEmptyString(nomVille);
+        Assess.isInArray(preposition, ['à', 'de'])
+
         if (preposition === 'à') {
             if (nomVille.startsWith('Les ')) {
                 return 'aux ' + nomVille.slice(4);
@@ -119,9 +129,10 @@ export class Gr {
                 return 'à la ' + nomVille.slice(3);
             }
 
-            if (nomVille.startsWith('L\'')) {
-                return 'à l\'' + nomVille.slice(2);
-            }
+            // TODO: discutable, à checker
+            // if (nomVille.startsWith('L\'')) {
+            //     return 'à l\'' + nomVille.slice(2);
+            // }
 
             return 'à ' + nomVille;
         } else if (preposition === 'de') {
