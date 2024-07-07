@@ -1,26 +1,27 @@
-import ExceptionsPluriel from "./ExceptionsPluriel";
 import Assess from "./assess";
+import {ExceptionsPluriel} from "./ExceptionsPluriel";
+import {ExceptionsFeminin} from "./ExceptionsFeminin";
 
 export class Gr {
 
-    /** Pluralise un mot en fonction de la quantité donnée<br>
+    /** Pluralise un nom commun en fonction de la quantité indiquée<br>
      * ```typescript
-     * Gr.pluralise('chat', 1); // chat
-     * Gr.pluralise('cheval', 2); // chevaux
-     * Gr.pluralise('cheval', 2, 'chevals'); // chevals
+     * Gr.pluraliseNom('chat', 1); // chat
+     * Gr.pluraliseNom('cheval', 2); // chevaux
+     * Gr.pluraliseNom('cheval', 2, 'chevals'); // chevals
      * ```*/
-    static pluralise(
-        mot: string,
+    static pluraliseNom(
+        nom: string,
         quantite: number,
         pluriel: string | null = null,
         seuil: number = 2
     ): string {
         Assess.isPositiveOrZero(quantite);
-        Assess.isNotEmptyString(mot);
+        Assess.isNotEmptyString(nom);
 
         // Si la quantité est ingérieure ou égale au seuil (par défaut 2), on renvoie le mot sans modification
         if (quantite < seuil) {
-            return mot;
+            return nom;
         }
 
         // Si un pluriel est fourni (surcharge de la méthode)
@@ -29,38 +30,122 @@ export class Gr {
         }
 
         // Si le mot est une exception
-        if (this.isException(mot)) {
-            return this.getException(mot);
+        if (ExceptionsPluriel.isException(nom)) {
+            return ExceptionsPluriel.getException(nom);
         }
 
-        // Sinon, on détermine le pluriel
+        // Sinon, on détermine le pluriel :
 
-        const lastChar = mot.slice(-1);
+        // On premd la dernière lettre
+        let lettresFin = nom.slice(-1);
 
         // mots en -s, -x, -z
-        if (lastChar === 's' || lastChar === 'x' || lastChar === 'z') {
-            return mot;
+        if (lettresFin === 's' || lettresFin === 'x' || lettresFin === 'z') {
+            return nom;
         }
 
-        const last2Chars = mot.slice(-2);
+        // On prend les deux dernières lettres
+        lettresFin = nom.slice(-2);
 
         // mots en -eu ou -au
-        if (last2Chars === 'au' || last2Chars === 'eu') {
-            return mot + 'x';
+        if (lettresFin === 'au' || lettresFin === 'eu') {
+            return nom + 'x';
         }
 
         // mots en -ou
-        if (last2Chars === 'ou') {
-            return mot + 's';
+        if (lettresFin === 'ou') {
+            return nom + 's';
         }
 
         // mots en -al
-        if (last2Chars === 'al') {
-            return mot.slice(0, -2) + 'aux';
+        if (lettresFin === 'al') {
+            return nom.slice(0, -2) + 'aux';
         }
 
-        // cas général
-        return mot + 's';
+        // Si on ne passe dans aucune condition, on retourne le cas général
+        return nom + 's';
+    }
+
+    static pluraliseAdj(adjectif: string, quantite: number, genre: string, seuil: number = 2): string {
+        Assess.isPositiveOrZero(quantite);
+        Assess.isNotEmptyString(adjectif);
+
+        if (quantite < seuil) {
+            return adjectif;
+        }
+
+        if (genre === 'f') {
+            adjectif = this.feminise(adjectif);
+        }
+
+        return this.pluraliseNom(adjectif, quantite, null, seuil);
+    }
+
+    static feminise(adjectif: string): string {
+        Assess.isNotEmptyString(adjectif);
+
+        // Si le mot est une exception
+        if (ExceptionsFeminin.isException(adjectif)) {
+            return ExceptionsFeminin.getException(adjectif);
+        }
+
+        let lettresFin1 = adjectif.slice(-1);
+        let lettresFin2 = adjectif.slice(-2);
+        let lettresFin3 = adjectif.slice(-3);
+
+        if (lettresFin1 === 's') {
+            return adjectif.slice(0, -1) + 'se';
+        }
+
+        if (lettresFin1 === 'f') {
+            return adjectif.slice(0, -1) + 've';
+        }
+
+        if (lettresFin1 === 'x') {
+            return adjectif.slice(0, -1) + 'se';
+        }
+
+        if (lettresFin1 === 'g') {
+            return adjectif.slice(0, -1) + 'gue';
+        }
+
+        if (lettresFin1 === 'c') {
+            return adjectif.slice(0, -1) + 'ches';
+        }
+
+        // mots en -il ou -el (les mots en -al suivent la règle générale)
+        if (lettresFin2 === 'il' || lettresFin2 === 'el') {
+            return adjectif + 'le';
+        }
+
+        // TODO langue de cons : Pour les autres adjectifs terminés en -l, il n'y a pas de règle générale :
+        // - nul, nulle ; seul, seule ; gentil, gentille...
+
+        // mots en -on ou -en (les mots en -in et -un suivent la règle générale)
+        if (lettresFin2 === 'on' || lettresFin2 === 'en') {
+            return adjectif + 'ne';
+        }
+
+        // TODO langue de cons : Pour les adjectifs en -an, il n'y a pas de règle générale :
+        // - paysan, paysanne ; persan, persane.
+
+        if (lettresFin2 === 'et') {
+            return adjectif + 'te';
+        }
+
+        // mots en -er
+        if (lettresFin2 === 'er') {
+            return adjectif.slice(0, -2) + 'ère';
+        }
+
+        // mots en -eur
+        if (lettresFin3 === 'eur') {
+            // TODO: là c'est la merde clairement
+        }
+
+        // TODO: check les autres
+
+        return adjectif + 'e';
     }
 
     /** Pluralise plusieurs mots successifs en fonction de la quantité donnée<br>
@@ -73,6 +158,7 @@ export class Gr {
      * ```typescript
      * Gr.mPluralise(['cheval', 'pur-sang'], 2); // chevaux pur-sangs => faux
      * ```*/
+    // TODO: gérer le féminin (je suis idiot)
     static mPluralise(
         mots: string[],
         quantite: number,
@@ -80,28 +166,10 @@ export class Gr {
     ): string {
         mots.forEach((mot, index) => {
             Assess.isNotEmptyString(mot);
-            mots[index] = this.pluralise(mot, quantite, null, seuil);
+            mots[index] = this.pluraliseNom(mot, quantite, null, seuil);
         });
 
         return mots.join(' ');
-    }
-
-    /** PRIVATE: Détermine si le mot figure dans la liste des exceptions */
-    private static isException(mot: string): boolean {
-        Assess.isNotEmptyString(mot);
-
-        return Object.keys(ExceptionsPluriel).includes(mot);
-    }
-
-    /** PRIVATE: Renvoie le pluriel du mot SI celui-ci est une exception */
-    private static getException(mot: string): string {
-        Assess.isNotEmptyString(mot);
-
-        if (!this.isException(mot)) {
-            throw new Error('Le mot n\'est pas une exception');
-        }
-
-        return ExceptionsPluriel[mot];
     }
 
     /** Renvoie l'article (défini ou indéfini) correspondant à un nom de ville<br>

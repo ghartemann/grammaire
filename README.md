@@ -132,3 +132,4 @@ Pour contribuer, il suffit de cloner le projet et de créer une pull request.
 - [Pluriels irréguliers en français](https://fr.wiktionary.org/wiki/Annexe:Pluriels_irr%C3%A9guliers_en_fran%C3%A7ais)
 - [1,5 gramme ou 1,5 grammes ?](https://www.antidote.info/fr/blogue/enquetes/15-gramme-ou-15-grammes)
 - [Noms géographiques et leurs articles](https://www.dictionnaire-academie.fr/article/QDL058)
+- [Le féminin des adjectifs qualificatifs](https://www.maxicours.com/se/cours/le-feminin-des-adjectifs-qualificatifs/)

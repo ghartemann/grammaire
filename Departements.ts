@@ -553,8 +553,12 @@ export class Departement {
         }
     }
 
-    static getDepartement(departement: string): Departement {
+    static getDepartement(departement: string|number): Departement {
         //TODO: implémenter la recherche par numéro
+        if (Object.values(this.list).find(d => d.numero === departement)) {
+            return Object.values(this.list).find(d => d.numero === departement);
+        }
+
         if (!Departement.list[departement]) {
             throw new RangeError(`Le département ${departement} n'existe pas`);
         }
