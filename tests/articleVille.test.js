@@ -1,4 +1,4 @@
-import {Gr} from '../Grammaire.ts';
+import {Gr} from '../src/Grammaire.ts';
 
 const method = 'articleVille';
 

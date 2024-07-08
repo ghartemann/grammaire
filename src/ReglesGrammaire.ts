@@ -1,8 +1,8 @@
-import {IGrammaireException} from "./IGrammaireException";
-import Assess from "./assess";
+import {IReglesGrammaire} from "./IReglesGrammaire";
+import Assess from "./Assess";
 
 // TODO: implement the interface
-export class GrammaireException {
+export class ReglesGrammaire {
     static liste: { [key: string]: string } = {};
 
     /** Détermine si le mot figure dans la liste des exceptions */

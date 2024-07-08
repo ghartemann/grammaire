@@ -1,4 +1,4 @@
-import {Gr} from '../Grammaire.ts';
+import {Gr} from '../src/Grammaire.ts';
 
 const method = 'mPluralise';
 
@@ -31,7 +31,7 @@ test('[chat, noir] > chats noirs', () => {
 });
 
 test('[maison, blanc] > maisons blanches', () => {
-    expect(Gr[method](['maison', 'blanc'], 2)).toBe('maisons blanches');
+    expect(Gr[method](['maison', 'blanche'], 2)).toBe('maisons blanches');
 });
 
 test('[arbre, haut] > arbres hauts', () => {
@@ -39,7 +39,7 @@ test('[arbre, haut] > arbres hauts', () => {
 });
 
 test('[fenêtre, ouvert] > fenêtres ouvertes', () => {
-    expect(Gr[method](['fenêtre', 'ouvert'], 2)).toBe('fenêtres ouvertes');
+    expect(Gr[method](['fenêtre', 'ouverte'], 2)).toBe('fenêtres ouvertes');
 });
 
 test('[chien, fidèle] > chiens fidèles', () => {
@@ -47,11 +47,11 @@ test('[chien, fidèle] > chiens fidèles', () => {
 });
 
 test('[étoile, brillant] > étoiles brillantes', () => {
-    expect(Gr[method](['étoile', 'brillant'], 2)).toBe('étoiles brillantes');
+    expect(Gr[method](['étoile', 'brillante'], 2)).toBe('étoiles brillantes');
 });
 
 test('[robe, élégant] > robes élégantes', () => {
-    expect(Gr[method](['robe', 'élégant'], 2)).toBe('robes élégantes');
+    expect(Gr[method](['robe', 'élégante'], 2)).toBe('robes élégantes');
 });
 
 test('[fromage, français] > fromages français', () => {
@@ -75,7 +75,7 @@ test('[ordinateur, moderne] > ordinateurs modernes', () => {
 });
 
 test('[table, rond] > tables rondes', () => {
-    expect(Gr[method](['table', 'rond'], 2)).toBe('tables rondes');
+    expect(Gr[method](['table', 'ronde'], 2)).toBe('tables rondes');
 });
 
 test('[verre, plein] > verres pleins', () => {

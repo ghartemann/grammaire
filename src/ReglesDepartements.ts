@@ -1,6 +1,12 @@
-export class Departement {
+interface DepartementInfo {
+    numero: string;
+    nom: string;
+    article: string;
+}
 
-    static list: { [departement: string]: Departement } = {
+export class ReglesDepartements {
+
+    static list: { [key: string]: DepartementInfo } = {
         'ain': {
             numero: '01',
             nom: 'Ain',
@@ -553,16 +559,15 @@ export class Departement {
         }
     }
 
-    static getDepartement(departement: string|number): Departement {
-        //TODO: implémenter la recherche par numéro
+    static getDepartement(departement: string|number): DepartementInfo {
         if (Object.values(this.list).find(d => d.numero === departement)) {
             return Object.values(this.list).find(d => d.numero === departement);
         }
 
-        if (!Departement.list[departement]) {
+        if (!this.list[departement]) {
             throw new RangeError(`Le département ${departement} n'existe pas`);
         }
 
-        return Departement.list[departement];
+        return this.list[departement];
     }
 }

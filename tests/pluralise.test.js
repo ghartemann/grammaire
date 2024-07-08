@@ -1,7 +1,7 @@
-import {Gr} from '../Grammaire.ts';
+import {Gr} from '../src/Grammaire.ts';
 
 // Au cas où le nom de la méthode change
-const method = 'pluraliseNom';
+const method = 'pluralise';
 
 //////////// MOTS EN -S, -Z ET -X //////////////
 test('brebis > brebis', () => {

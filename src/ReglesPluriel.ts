@@ -1,7 +1,9 @@
-import {GrammaireException} from "./GrammaireException";
-import {IGrammaireException} from "./IGrammaireException";
+import {ReglesGrammaire} from "./ReglesGrammaire";
+import {IReglesGrammaire} from "./IReglesGrammaire";
+import Assess from "./Assess";
+import {ReglesFeminin} from "./ReglesFeminin";
 
-export class ExceptionsPluriel extends GrammaireException {
+export class ReglesPluriel extends ReglesGrammaire {
     static liste = {
         // Les noms terminés par -eu ou -au au singulier prennent un -x au pluriel, sauf
         'pneu': 'pneus',
@@ -119,4 +121,90 @@ export class ExceptionsPluriel extends GrammaireException {
         'vantail': "vantaux",
         'vitrail': "vitraux"
     };
+
+
+    static pluralise(
+        nom: string,
+        quantite: number,
+        pluriel: string | null = null,
+        seuil: number = 2
+    ): string {
+        Assess.isPositiveOrZero(quantite);
+        Assess.isNotEmptyString(nom);
+
+        // Si la quantité est inférieure ou égale au seuil (par défaut 2), on renvoie le mot sans modification
+        if (quantite < seuil) {
+            return nom;
+        }
+
+        // Si un pluriel est fourni (surcharge de la méthode)
+        if (pluriel !== null) {
+            return pluriel;
+        }
+
+        // Si le mot est une exception
+        if (ReglesPluriel.isException(nom)) {
+            return ReglesPluriel.getException(nom);
+        }
+
+        // Sinon, on détermine le pluriel :
+
+        let lettresFin1 = nom.slice(-1);
+        let lettresFin2 = nom.slice(-2);
+
+        // mots en -s, -x, -z
+        if (lettresFin1 === 's' || lettresFin1 === 'x' || lettresFin1 === 'z') {
+            return nom;
+        }
+
+        // mots en -eu ou -au
+        if (lettresFin2 === 'au' || lettresFin2 === 'eu') {
+            return nom + 'x';
+        }
+
+        // mots en -ou
+        if (lettresFin2 === 'ou') {
+            return nom + 's';
+        }
+
+        // mots en -al
+        if (lettresFin2 === 'al') {
+            return nom.slice(0, -2) + 'aux';
+        }
+
+        // Si on ne passe dans aucune condition, on retourne le cas général
+        return nom + 's';
+    }
+
+
+    static pluraliseAdj(adjectif: string, quantite: number, genre: string, seuil: number = 2): string {
+        Assess.isPositiveOrZero(quantite);
+        Assess.isNotEmptyString(adjectif);
+
+        // TODO: voir si on retourne le féminin si quantité < seuil ?
+
+        if (quantite < seuil) {
+            return adjectif;
+        }
+
+        if (genre === 'f') {
+            adjectif = ReglesFeminin.feminise(adjectif);
+        }
+
+        return this.pluralise(adjectif, quantite, null, seuil);
+    }
+
+
+    static mPluralise(
+        mots: string[],
+        quantite: number,
+        seuil: number = 2
+    ): string {
+        mots.forEach((mot, index) => {
+            Assess.isNotEmptyString(mot);
+            mots[index] = this.pluralise(mot, quantite, null, seuil);
+        });
+
+        return mots.join(' ');
+    }
 }
